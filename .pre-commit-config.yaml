@@ -1,0 +1,53 @@
+---
+fail_fast: false
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.4.0
+      hooks:
+          - id: no-commit-to-branch
+            args: [--branch, main]
+          - id: check-merge-conflict
+          - id: trailing-whitespace
+          - id: end-of-file-fixer
+          - id: check-added-large-files
+          - id: detect-private-key
+          - id: check-executables-have-shebangs
+          - id: check-symlinks
+          - id: pretty-format-json
+            args: [--autofix]
+          - id: check-json
+          # - id: check-yaml
+          - id: check-xml
+          - id: mixed-line-ending
+            args: ['--fix=lf']
+    # - repo: https://github.com/adrienverge/yamllint.git
+    #   rev: v1.29.0
+    #   hooks:
+    #       - id: yamllint
+    #         args: [-c=.yamllint]
+    - repo: https://github.com/psf/black
+      rev: 23.1.0
+      hooks:
+          - id: black
+    - repo: https://github.com/pycqa/pylint
+      rev: v2.16.2
+      hooks:
+          - id: pylint
+    - repo: https://github.com/pycqa/pydocstyle
+      rev: 6.3.0
+      hooks:
+          - id: pydocstyle
+            args: ['--ignore=D100,D212,D407,D103,D209,D101,D106,D205,D213']
+    - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+      rev: 2.7.1
+      hooks:
+          - id: editorconfig-checker
+    - repo: https://github.com/bridgecrewio/checkov.git
+      rev: 2.3.27
+      hooks:
+          - id: checkov
+            args: ['--skip-check=CKV_GCP_83,CKV_GCP_78,CKV_GCP_62']
+    - repo: https://github.com/jumanjihouse/pre-commit-hooks.git
+      rev: 3.0.0
+      hooks:
+          - id: markdownlint
